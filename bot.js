@@ -798,30 +798,92 @@ client.on('message',message =>{
 
 
 client.on('message',async message => {
+ 
+  if(message.content.startsWith(prefix + "js")) {
 
-    if(message.content.startsWith("-js")) {
+if(!message.channel.guild) return message.reply(' ');
 
-  if(!message.channel.guild) return message.reply(' ');
+  let rank = message.guild.member(message.author).roles.find('name', '• Alpha » Help');
 
-    let rank = message.guild.member(message.author).roles.find('name', '• Alpha » Help');
+  if (!rank) return message.channel.send('🛑 **| يجب ان تمتلك رتبة سبورت لأستخدام هذا الأمر.**');
 
-    if (!rank) return message.channel.send(':octagonal_sign: **| يجب ان تمتلك رتبة سبورت لأستخدام هذا الأمر.**');
+  let jscodes = message.guild.channels.find(`name`, "✽-discord-js");
 
-    let jscodes = message.guild.channels.find(`name`, "✻-discord-js");
+  if(!jscodes) return message.channel.send("❌لم اجد الروم الخاص بنشر الاكواد");
 
-    if(!jscodes) return message.channel.send(":x:لم اجد الروم الخاص بنشر الاكواد");
+    let filter = m => m.author.id === message.author.id;
 
-      let filter = m => m.author.id === message.author.id;
+    let thisMessage;
 
-      let thisMessage;
+    let thisFalse;
 
-      let thisFalse;
+    message.channel.send('📝 **| من فضلك اكتب الكود الأن... ✏ **').then(msg => {
 
-      message.channel.send(':pencil: **| من فضلك اكتب الكود الأن... :pencil2: **').then(msg => {
 
-  
 
-      message.channel.awaitMessages(filter, {
+    message.channel.awaitMessages(filter, {
+
+      max: 1,
+
+      time: 90000,
+
+      errors: ['time']
+
+    })
+
+    .then(collected => {
+
+      collected.first().delete();
+
+      thisMessage = collected.first().content;
+
+      let boi;
+
+      msg.edit('📜 **| من فضلك اكتب وصف الكود الأن... ✏ **').then(msg => {
+
+
+
+          message.channel.awaitMessages(filter, {
+
+            max: 1,
+
+            time: 90000,
+
+            errors: ['time']
+
+          })
+
+          .then(collected => {
+
+            collected.first().delete();
+
+            boi = collected.first().content;
+
+            let boi2;
+
+            msg.edit('🤵 **| من فضلك اكتب من صنع هذا الكود الأن... ✏ **').then(msg => {
+
+
+
+              message.channel.awaitMessages(filter, {
+
+                max: 1,
+
+                time: 90000,
+
+                errors: ['time']
+
+              })
+
+              .then(collected => {
+
+                collected.first().delete();
+
+              boi2 = collected.first().content;
+
+      msg.edit('🛡 **| [ هل انت متأكد من نشر الكود؟ | [ نعم ] او [ لا**');
+
+ message.channel.awaitMessages(response => response.content === 'نعم' || 'لا' && filter,{
 
         max: 1,
 
@@ -833,125 +895,203 @@ client.on('message',async message => {
 
       .then(collected => {
 
-        collected.first().delete();
+        if(collected.first().content === 'لا') {
 
-        thisMessage = collected.first().content;
+          msg.delete();
 
-        let boi;
+          message.delete();
 
-        msg.edit(':scroll: **| من فضلك اكتب وصف الكود الأن... :pencil2: **').then(msg => {
+          thisFalse = false;
 
-  
+        }
 
-            message.channel.awaitMessages(filter, {
+        if(collected.first().content === 'نعم') {
 
-              max: 1,
+          if(thisFalse === false) return;
 
-              time: 90000,
+          msg.edit('🕊 **| Done ✅, تم بنجاح نشر كودك في روم الاكواد**');
 
-              errors: ['time']
+          collected.first().delete();
 
-            })
-
-            .then(collected => {
-
-              collected.first().delete();
-
-              boi = collected.first().content;
-
-              let boi2;
-
-              msg.edit(':man_in_tuxedo: **| من فضلك اكتب من صنع هذا الكود الأن... :pencil2: **').then(msg => {
-
-  
-
-                message.channel.awaitMessages(filter, {
-
-                  max: 1,
-
-                  time: 90000,
-
-                  errors: ['time']
-
-                })
-
-                .then(collected => {
-
-                  collected.first().delete();
-
-                boi2 = collected.first().content;
-
-        msg.edit(':shield: **| [ هل انت متأكد من نشر الكود؟ | [ نعم ] او [ لا**');
-
-   message.channel.awaitMessages(response => response.content === 'نعم' || 'لا' && filter,{
-
-          max: 1,
-
-          time: 90000,
-
-          errors: ['time']
-
-        })
-
-        .then(collected => {
-
-          if(collected.first().content === 'لا') {
-
-            msg.delete();
-
-            message.delete();
-
-            thisFalse = false;
-
-          }
-
-          if(collected.first().content === 'نعم') {
-
-            if(thisFalse === false) return;
-
-            msg.edit(':dove: **| Done :white_check_mark:, تم بنجاح نشر كودك في روم الاكواد**');
-
-            collected.first().delete();
-
-
+          jscodes.send(`@everyone | @here
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-	 @everyone | @here
-**Code Alpha©  :arrow_down:** 
+**alpha codes© ⬇**
 \`\`\`js
 ${thisMessage}\`\`\`
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 **وصف الكود**: ${boi}
 **تم النشر بواسطة**: ${message.author}
-**المصدر / الشخص الذي صنع الكود**: ${boi2}`).then(ping => {
-
-                  ping.react("✅")
-
-                  ping.react("❌")
-
-                })
-
-
-          }
+**المصدر / الشخص الذي صنع الكود**: ${boi2}`);
 
         }
 
-    );
+      }
+
+  );
 
 });
 
-      });
-
-    }
-
-      );
-
     });
+
+  }
+
+    );
+
+  });
 
 }
 
 );
 
-      })}});
+    })}});
+
+client.on('message',async message => {
+ 
+  if(message.content.startsWith(prefix + "html")) {
+
+if(!message.channel.guild) return message.reply(' ');
+
+  let rank = message.guild.member(message.author).roles.find('name', '• Alpha » Help ');
+
+  if (!rank) return message.channel.send('🛑 **| يجب ان تمتلك رتبة سبورت لأستخدام هذا الأمر.**');
+
+  let jscodes = message.guild.channels.find(`name`, "✻-html");
+
+  if(!jscodes) return message.channel.send("❌لم اجد الروم الخاص بنشر الاكواد");
+
+    let filter = m => m.author.id === message.author.id;
+
+    let thisMessage;
+
+    let thisFalse;
+
+    message.channel.send('📝 **| من فضلك اكتب الكود الأن... ✏ **').then(msg => {
+
+
+
+    message.channel.awaitMessages(filter, {
+
+      max: 1,
+
+      time: 90000,
+
+      errors: ['time']
+
+    })
+
+    .then(collected => {
+
+      collected.first().delete();
+
+      thisMessage = collected.first().content;
+
+      let boi;
+
+      msg.edit('📜 **| من فضلك اكتب وصف الكود الأن... ✏ **').then(msg => {
+
+
+
+          message.channel.awaitMessages(filter, {
+
+            max: 1,
+
+            time: 90000,
+
+            errors: ['time']
+
+          })
+
+          .then(collected => {
+
+            collected.first().delete();
+
+            boi = collected.first().content;
+
+            let boi2;
+
+            msg.edit('🤵 **| من فضلك اكتب من صنع هذا الكود الأن... ✏ **').then(msg => {
+
+
+
+              message.channel.awaitMessages(filter, {
+
+                max: 1,
+
+                time: 90000,
+
+                errors: ['time']
+
+              })
+
+              .then(collected => {
+
+                collected.first().delete();
+
+              boi2 = collected.first().content;
+
+      msg.edit('🛡 **| [ هل انت متأكد من نشر الكود؟ | [ نعم ] او [ لا**');
+
+ message.channel.awaitMessages(response => response.content === 'نعم' || 'لا' && filter,{
+
+        max: 1,
+
+        time: 90000,
+
+        errors: ['time']
+
+      })
+
+      .then(collected => {
+
+        if(collected.first().content === 'لا') {
+
+          msg.delete();
+
+          message.delete();
+
+          thisFalse = false;
+
+        }
+
+        if(collected.first().content === 'نعم') {
+
+          if(thisFalse === false) return;
+
+          msg.edit('🕊 **| Done ✅, تم بنجاح نشر كودك في روم الاكواد**');
+
+          collected.first().delete();
+
+          jscodes.send(`@everyone | @here
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+**alpha codes© ⬇**
+\`\`\`html
+${thisMessage}\`\`\`
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+**وصف الكود**: ${boi}
+**تم النشر بواسطة**: ${message.author}
+**المصدر / الشخص الذي صنع الكود**: ${boi2}`);
+
+        }
+
+      }
+
+  );
+
+});
+
+    });
+
+  }
+
+    );
+
+  });
+
+}
+
+);
+
+    })}});
 
 
 
