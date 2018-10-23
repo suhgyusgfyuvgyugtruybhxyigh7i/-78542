@@ -101,7 +101,7 @@ client.on('message', message => {
        if(message.content.startsWith(`رابط`)){
 
            var embed = new Discord.RichEmbed()
-           .setTitle("alpha")
+           .setTitle("alpha codes")
            .setURL("https://discord.gg/Su7f4xT")
           
 		   .setTimestamp()
@@ -109,6 +109,58 @@ client.on('message', message => {
            message.channel.send({embed})
        }
    });
+
+
+client.on('message', message => {
+       if(message.content.startsWith(`رابط`)){
+
+           var embed = new Discord.RichEmbed()
+           .setTitle("alpha community")
+           .setURL("https://discord.gg/h2zseP7")
+          
+		   .setTimestamp()
+           .setColor("RANDOM")
+           message.channel.send({embed})
+       }
+   });
+
+
+
+
+client.on('message', message => {
+       if(message.content.startsWith(`رابط`)){
+
+           var embed = new Discord.RichEmbed()
+           .setTitle("alpha shop")
+           .setURL("https://discord.gg/Ea955C5")
+          
+		   .setTimestamp()
+           .setColor("RANDOM")
+           message.channel.send({embed})
+       }
+   });
+
+
+client.on('message', message => {
+       if(message.content.startsWith(`رابط`)){
+
+           var embed = new Discord.RichEmbed()
+           .setTitle("alpha bot list")
+           .setURL("https://discord.gg/Mmc5HdA")
+          
+		   .setTimestamp()
+           .setColor("RANDOM")
+           message.channel.send({embed})
+       }
+   });
+
+
+
+
+
+
+
+
 
 
 
@@ -132,91 +184,6 @@ client.on('message', function(message) {
 	
 
 
-client.on('message', message => {
-    if (message.author.bot) return;
-     if (message.content === prefix + "help") {
-		 message.channel.send('**تم ارسالك في الخاص**');
-            
-	
-		 
-
-
- message.author.sendMessage(`
- **
-╔[❖════════════❖]╗
-                  Prefix = ' * '
-╚[❖════════════❖]╝
-
-╔[❖════════════❖]╗
-                    اوامر ادارية
-╚[❖════════════❖]╝
-
- ❖ *kick <mention > ➾ لطرد عضو
- 
- ❖ *mute < mention > ➾ اسكات عضو 
-
- ❖ *clear  ➾ لتنضيف المحادثة (fixing)
-
- ❖ *cv <name> ➾ صنع روم صوتية
-
- ❖ *ct <name> ➾ صنع روم كتابية
-
- ❖ *unmute <mention> ➾ فك الاسكات من العضو
-  
- ❖ *bc <message> ➾ لارسال رسالة لجميع اعضاء السيرفر
-
-
-╔[❖════════════❖]╗
-                    اوامر عامة
-╚[❖════════════❖]╝
-
-❖ *roll <number> ➾ قرعة
-
-❖ *member ➾ معلومات الاعضاء
-
-❖ *avatar ➾ شعار حسابك
-
-❖ *ser-av ➾ شعار السيرفر
-
-❖ *uptime ➾ مدة التشغيل
-
-❖ *id ➾ اي دي
-
-❖ *date ➾ التاريخ
-
-❖ *ping ➾ عرض سرعه اتصال البوت
-
-❖ *server ➾ معلومات السيرفر
-
-❖ *cvt ➾ لعمل روم صوتي مؤقت
-
-❖ *ovt ➾ لالغاء الروم الصوتي
-
-❖ *setstats ➾ لعمل روم تاريخ و الوقت وعداد الفويس
-
-❖ *user ➾ لعمل روم يعطيك عدد اعضاء السيرفر
-
-❖ *invs ➾ يعطيك رابط السيرفر الذي كتبت في الامر
-
-╔[❖════════════❖]╗
-                    أوامر الالعاب
-╚[❖════════════❖]╝
-
-❖ * لعبه صراحه ➾ صراحه
-
-❖ *rps ➾ لعبة حجره ورقه مقص
-
-❖ *امثال ➾ lلعبة امثله
-
-❖ *ايموجي ➾ lلعبة ايموجي
-
-==================================================================
-
-
-`);
-
-    }
-});
 
 
 
@@ -226,30 +193,8 @@ client.on('message', message => {
 
 
 
-const devs = ['252813587188416512'];
-const adminprefix = "-";
-client.on('message', message => {
 
-    var argresult = message.content.split(` `).slice(1).join(' ');
-      if (!devs.includes(message.author.id)) return;
-      
-  if (message.content.startsWith(adminprefix + 'ply')) {
-    client.user.setGame(argresult);
-      message.channel.sendMessage(`**✅   ${argresult}**`)
-  } else 
-  if (message.content.startsWith(adminprefix + 'wt')) {
-  client.user.setActivity(argresult, {type:'WATCHING'});
-      message.channel.sendMessage(`**✅   ${argresult}**`)
-  } else 
-  if (message.content.startsWith(adminprefix + 'ls')) {
-  client.user.setActivity(argresult , {type:'LISTENING'});
-      message.channel.sendMessage(`**✅   ${argresult}**`)
-  } else 
-  if (message.content.startsWith(adminprefix + 'st')) {
-    client.user.setGame(argresult, "https://www.twitch.tv/حب بلا حدود");
-      message.channel.sendMessage(`**✅   ${argresult}**`)
-  }
-  });
+
 
 
 
@@ -285,30 +230,13 @@ client.on('message',  message => {
  
 
 
- client.on('message',async message => {
-  if(message.content.startsWith(prefix + "server")) {
-
-    let embed = new Discord.RichEmbed()
-    .setAuthor(message.author.username, message.author.avatarURL)
-    .setTitle(`\`${message.guild.name}\``)
-    .setThumbnail(message.guild.iconURL)
-    .addField('• iD:', `- ${message.guild.id}`,true)
-    .addField('• Owner:', `- ${message.guild.owner}`, true)
-    .addField('• Channels:', `\`#\` ${message.guild.channels.filter(a => a.type === 'text').size} - \`🎤\` ${message.guild.channels.filter(a => a.type === 'voice').size}`, true)
-    .addField('• Members:', `\`Count\` ${message.guild.memberCount} - \`Last\` ${Array.from(message.channel.guild.members.values()).sort((a, b) => b.joinedAt - a.joinedAt).map(m => `${m}`).splice(0, 1)}`, true)
-    .addField('• AFK Channel:', `${message.guild.afkChannel || 'None'}`, true)
-    .addField('• Other:', `\`Roles\` ${message.guild.roles.size} - \`Emojis\` ${message.guild.emojis.size} \`[\` ${message.guild.emojis.map(m => m).join(' **|** ')} \`]\``,true)
-    .addField('• Region:', `${message.guild.region}`, true);
-
-    message.channel.send(embed);
-  }
-});
+ 
 
 
 
 client.on('message', message => {
               if(!message.channel.guild) return;
-    var prefix = "+";
+    var prefix = "*";
     if(message.content.startsWith(prefix + 'bc')) {
   if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINISTRATOR`' );
     let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
