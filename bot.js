@@ -4,7 +4,7 @@ const prefix = "*";
 
 
 client.on('ready', () => {
-  client.user.setGame('Alpha bot *help','https://www.twitch.tv/peery13');
+  client.user.setGame('Alpha bot','https://www.twitch.tv/peery13');
   console.log('---------------');
   console.log(' Bot Is Online')
   console.log('---------------')
