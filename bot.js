@@ -799,7 +799,7 @@ client.on('message',message =>{
 
 client.on('message',async message => {
 
-    if(message.content.startsWith(prefix + "js")) {
+    if(message.content.startsWith("-js")) {
 
   if(!message.channel.guild) return message.reply(' ');
 
@@ -913,8 +913,9 @@ client.on('message',async message => {
 
             collected.first().delete();
 
- @everyone | @here
+
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	 @everyone | @here
 **Code Alpha©  :arrow_down:** 
 \`\`\`js
 ${thisMessage}\`\`\`
